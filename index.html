@@ -352,10 +352,11 @@
   <script>
     const cur = document.getElementById('cur');
     let mx = 0, my = 0, cx = 0, cy = 0;
-    const canHover = window.matchMedia('(hover:hover)').matches;
+    const canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-    if (canHover) {
-      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    if (canHover && cur) {
+      document.body.classList.add('has-custom-cursor');
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
       (function loop() {
         cx += (mx - cx) * .13;
         cy += (my - cy) * .13;
