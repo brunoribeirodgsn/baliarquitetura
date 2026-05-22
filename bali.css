@@ -207,11 +207,12 @@ footer{background:var(--br);color:var(--cr);padding:36px clamp(1.25rem,4vw,3rem)
   .quick-cta{display:none}
   .hbtn{top:16px;right:18px}
   .nav-ov-foot{padding:0 1.25rem;display:grid;gap:.65rem;text-align:center}
-  .hero{min-height:620px;height:94vh;padding:0 20px 66px}
+  .hero{min-height:660px;height:100svh;padding:0 20px 118px}
   .hero-name img{width:min(76vw,460px)}
-  .hero-row{display:grid;gap:1.4rem}
+  .hero-row{display:grid;gap:1.15rem}
   .hero-actions{justify-content:flex-start}
   .btn-main,.btn-ghost{width:100%;max-width:300px}
+  .hero-peek{bottom:22px}
   .about{grid-template-columns:1fr}
   .about-img{min-height:360px}
   .lead-strip{grid-template-columns:1fr}
