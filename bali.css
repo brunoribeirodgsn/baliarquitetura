@@ -51,7 +51,7 @@ body.has-custom-cursor .cur{display:block}
 .nav-ov-foot p{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(var(--cr-rgb),.38);font-weight:300}
 
 .hero{height:96vh;min-height:660px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0 clamp(1.25rem,4vw,3rem) 74px;background:var(--br)}
-.hero-bg{position:absolute;inset:0;background:url('assets/img/sala.png') center/cover no-repeat;transform:scale(1.08);filter:brightness(.76) saturate(.9);transition:transform 10s ease;will-change:transform}
+.hero-bg{position:absolute;inset:-90px 0;background:url('assets/img/sala.png') center/cover no-repeat;transform:scale(1.08);filter:brightness(.76) saturate(.9);transition:transform 10s ease;will-change:transform}
 .hero-bg.rdy{transform:scale(1.03)}
 .hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(47,28,18,.1),rgba(47,28,18,.28) 54%,rgba(47,28,18,.6))}
 .hero-cont{position:relative;z-index:2;width:100%}
@@ -206,7 +206,7 @@ footer{background:var(--br);color:var(--cr);padding:36px clamp(1.25rem,4vw,3rem)
 
 @media(max-width:768px){
   body,a,button{cursor:auto}
-  .quick-cta{display:none}
+  .quick-cta{display:inline-flex;align-items:center;justify-content:center;top:16px;left:18px;right:72px;padding:0 14px;min-height:42px;font-size:.5rem;letter-spacing:.16em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(var(--cr-rgb),.78)}
   .hbtn{top:16px;right:18px}
   .nav-ov-foot{padding:0 1.25rem;display:grid;gap:.65rem;text-align:center}
   .hero{min-height:660px;height:100svh;padding:0 20px 118px}
