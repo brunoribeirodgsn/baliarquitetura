@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto — Bali Arquitetura</title>
+  <meta name="description" content="Detalhes do projeto de arquitetura e interiores pela Bali Arquitetura.">
+  <link rel="stylesheet" href="bali.css">
+</head>
+
+<body>
+
+  <div class="cur" id="cur"></div>
+
+  <a class="quick-cta" href="https://wa.me/5524992237645" target="_blank">solicite seu orçamento</a>
+  <a class="quick-cta quick-cta-left" href="projetos.html" id="btnVoltar">← projetos</a>
+
+  <button class="hbtn" id="hbtn" aria-label="Abrir menu" aria-expanded="false">
+    <b></b><b></b><b></b>
+  </button>
+
+  <nav class="nav-ov" id="navOv" aria-label="Navegação principal">
+    <ul>
+      <li><a href="index.html#sobre" class="lk" onclick="closeNav()">sobre</a></li>
+      <li><a href="projetos.html" class="lk" onclick="closeNav()">projetos</a></li>
+      <li><a href="index.html#galeria" class="lk" onclick="closeNav()">galeria</a></li>
+      <li><a href="index.html#servicos" class="lk" onclick="closeNav()">serviços</a></li>
+      <li><a href="index.html#contato" class="lk" onclick="closeNav()">contato</a></li>
+    </ul>
+    <div class="nav-ov-foot">
+      <p>arquitetura &amp; interiores</p>
+      <p>rio de janeiro · reformas e projetos</p>
+    </div>
+  </nav>
+
+  <main id="projetoMain"></main>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Fechar imagem">fechar</button>
+    <button class="lightbox-prev" type="button" aria-label="Foto anterior">&#8592;</button>
+    <button class="lightbox-next" type="button" aria-label="Próxima foto">&#8594;</button>
+    <span class="lightbox-counter" id="lbCounter"></span>
+    <img src="" alt="">
+  </div>
+
+  <footer>
+    <div class="f-logo"><img src="assets/logotipo/PNG/Ativo 10@288x-8.png" alt="Bali"></div>
+    <p class="f-copy">CNPJ 64.661.800/0001-36 · © 2026 Bali Arquitetura. Todos os direitos reservados.</p>
+    <div class="f-links">
+      <a href="index.html#sobre">Sobre</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="index.html#galeria">Galeria</a>
+      <a href="index.html#contato">Contato</a>
+    </div>
+  </footer>
+
+  <script src="projetos-data.js"></script>
+  <script>
+    try {
+      /* ── Lê o parâmetro ?id= ─────────────────────────────── */
+      const params = new URLSearchParams(window.location.search);
+      const idParam = params.get('id');
+      const projeto = PROJETOS.find(p => p.id === idParam);
+      const main = document.getElementById('projetoMain');
+      const cur = document.getElementById('cur');
+
+      if (!projeto) {
+        /* 404 amigável */
+        main.innerHTML = `
+          <div class="proj-not-found">
+            <span class="lbl">Projeto não encontrado</span>
+            <h1 class="h2" style="font-size:clamp(2rem,5vw,4rem)">Ops…</h1>
+            <p style="color:rgba(var(--br-rgb),.6);font-size:.95rem">Este projeto não existe ou foi removido.</p>
+            <a href="projetos.html" class="ct-wa-btn" style="margin-top:1rem">Ver todos os projetos</a>
+          </div>`;
+      } else {
+        /* Encontra o próximo projeto */
+        const currentIndex = PROJETOS.findIndex(p => p.id === projeto.id);
+        const nextIndex = (currentIndex + 1) % PROJETOS.length;
+        const nextProjeto = PROJETOS[nextIndex];
+
+        /* Atualiza título e meta */
+        document.title = `${projeto.nome} — Bali Arquitetura`;
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+          metaDesc.content = `${projeto.nome}: ${projeto.descricao.slice(0, 140)}…`;
+        }
+
+        /* WhatsApp msg pré-preenchida */
+        const waMsg = encodeURIComponent(`Olá, Diego! Vi o projeto "${projeto.nome}" no site e gostaria de saber mais.`);
+        const waUrl = `https://wa.me/5524992237645?text=${waMsg}`;
+
+        /* Tags HTML */
+        const tagsHtml = projeto.tags.map(t => `<span class="detail-tag">${t}</span>`).join('');
+
+        /* Galeria HTML */
+        const galHtml = projeto.fotos.map((f, i) =>
+          `<img class="detail-gallery-img" src="${f}" alt="Foto ${i + 1} do projeto ${projeto.nome}" loading="${i === 0 ? 'eager' : 'lazy'}">`
+        ).join('');
+
+        main.innerHTML = `
+          <div class="detail-hero">
+            <img src="${projeto.capa}" alt="Imagem principal do projeto ${projeto.nome}">
+            <div class="detail-hero-shade"></div>
+            <div class="detail-hero-badge">
+              <span class="lbl">${projeto.categoria}</span>
+              <h1>${projeto.nome}</h1>
+            </div>
+          </div>
+
+          <div class="detail-body">
+            <aside class="detail-info">
+              <span class="lbl">Sobre o projeto</span>
+              <p class="detail-desc">${projeto.descricao}</p>
+
+              <div class="detail-meta">
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Ano</span>
+                  <span class="detail-meta-val">${projeto.ano}</span>
+                </div>
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Área</span>
+                  <span class="detail-meta-val">${projeto.area}</span>
+                </div>
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Local</span>
+                  <span class="detail-meta-val">${projeto.local}</span>
+                </div>
+              </div>
+
+              <div class="detail-tags">${tagsHtml}</div>
+
+              <a href="${waUrl}" target="_blank" rel="noopener" class="detail-cta-wa" id="projWaBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Quero um projeto assim
+              </a>
+            </aside>
+
+            <div class="detail-gallery" id="detailGallery">${galHtml}</div>
+          </div>
+
+          <div class="detail-next-section">
+            <span class="lbl">Próximo Projeto</span>
+            <h2><a href="projeto.html?id=${nextProjeto.id}">${nextProjeto.nome} &rarr;</a></h2>
+          </div>`;
+
+        /* Lightbox com navegação */
+        const lightbox    = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const lbCounter   = document.getElementById('lbCounter');
+        const galleryImgs = [];
+        let lbIndex = 0;
+
+        function openLightbox(index) {
+          lbIndex = index;
+          const imgs = document.getElementById('detailGallery').querySelectorAll('.detail-gallery-img');
+          lightboxImg.src = imgs[lbIndex].src;
+          lightboxImg.alt = imgs[lbIndex].alt;
+          lbCounter.textContent = `${lbIndex + 1} / ${imgs.length}`;
+          lightbox.querySelector('.lightbox-prev').style.display = imgs.length > 1 ? '' : 'none';
+          lightbox.querySelector('.lightbox-next').style.display = imgs.length > 1 ? '' : 'none';
+          lightbox.classList.add('on');
+          lightbox.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function moveLightbox(dir) {
+          const imgs = document.getElementById('detailGallery').querySelectorAll('.detail-gallery-img');
+          lbIndex = (lbIndex + dir + imgs.length) % imgs.length;
+          lightboxImg.style.opacity = '0';
+          setTimeout(() => {
+            lightboxImg.src = imgs[lbIndex].src;
+            lightboxImg.alt = imgs[lbIndex].alt;
+            lbCounter.textContent = `${lbIndex + 1} / ${imgs.length}`;
+            lightboxImg.style.opacity = '1';
+          }, 150);
+        }
+
+        document.getElementById('detailGallery').querySelectorAll('.detail-gallery-img').forEach((img, i) => {
+          img.addEventListener('click', () => openLightbox(i));
+        });
+
+        function closeLightbox() {
+          lightbox.classList.remove('on');
+          lightbox.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+        document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        document.querySelector('.lightbox-prev').addEventListener('click', e => { e.stopPropagation(); moveLightbox(-1); });
+        document.querySelector('.lightbox-next').addEventListener('click', e => { e.stopPropagation(); moveLightbox(1); });
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+        /* Swipe touch */
+        let tsX = 0;
+        lightbox.addEventListener('touchstart', e => { tsX = e.touches[0].clientX; }, { passive: true });
+        lightbox.addEventListener('touchend', e => {
+          const dx = e.changedTouches[0].clientX - tsX;
+          if (Math.abs(dx) > 50) moveLightbox(dx < 0 ? 1 : -1);
+        });
+
+        document.addEventListener('keydown', e => {
+          if (!lightbox.classList.contains('on')) return;
+          if (e.key === 'Escape')      closeLightbox();
+          if (e.key === 'ArrowLeft')   moveLightbox(-1);
+          if (e.key === 'ArrowRight')  moveLightbox(1);
+        });
+
+        /* Cursor interativo nos novos elementos */
+        if (document.body.classList.contains('has-custom-cursor')) {
+          document.querySelectorAll('.detail-gallery-img,.detail-cta-wa,.detail-tag').forEach(el => {
+            el.addEventListener('mouseenter', () => cur.classList.add('big'));
+            el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+          });
+        }
+      }
+
+      /* ── Cursor ──────────────────────────────────────────── */
+      let mx = 0, my = 0, cx = 0, cy = 0;
+      const canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+      if (canHover && cur) {
+        document.body.classList.add('has-custom-cursor');
+        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+        (function loop() {
+          cx += (mx - cx) * .13; cy += (my - cy) * .13;
+          cur.style.left = cx + 'px'; cur.style.top = cy + 'px';
+          requestAnimationFrame(loop);
+        })();
+        document.querySelectorAll('a,button').forEach(el => {
+          el.addEventListener('mouseenter', () => cur.classList.add('big'));
+          el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+        });
+      } else { cur.style.display = 'none'; }
+
+      /* ── Menu ────────────────────────────────────────────── */
+      const hbtn = document.getElementById('hbtn');
+      const navOv = document.getElementById('navOv');
+      function closeNav() {
+        hbtn.classList.remove('on');
+        hbtn.setAttribute('aria-expanded', 'false');
+        navOv.classList.remove('on');
+        document.body.style.overflow = '';
+      }
+      hbtn.addEventListener('click', () => {
+        const open = hbtn.classList.toggle('on');
+        hbtn.setAttribute('aria-expanded', String(open));
+        navOv.classList.toggle('on');
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+    } catch (err) {
+      document.body.innerHTML = `<div style="padding: 3rem; color: #673921; background: #f7f6e4; font-family: sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Erro de Carregamento</h2>
+        <p style="margin-bottom: 2rem; opacity: 0.8; max-width: 600px;">Ocorreu um erro ao carregar os detalhes do projeto no navegador:</p>
+        <pre style="background: rgba(103,57,33,0.08); padding: 1.5rem; border-radius: 8px; text-align: left; max-width: 90vw; overflow-x: auto; font-size: 0.9rem; color: #2f1c12;">${err.stack || err.message || err}</pre>
+        <a href="projetos.html" style="margin-top: 2rem; display: inline-block; padding: 0.8rem 2rem; background: #673921; color: #f7f6e4; text-decoration: none; border-radius: 99px; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;">Voltar para projetos</a>
+      </div>`;
+    }
+  </script>
+</body>
+
+</html>
