@@ -186,9 +186,10 @@ body.has-custom-cursor .cur{display:block}
 
 /* ── Contact page hero ───────────────────────────────────── */
 .ct-hero{height:35vh;min-height:240px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--br)}
-.ct-hero-bg{position:absolute;inset:-12%;background:url('assets/img/texture.png') center/cover no-repeat;will-change:transform;filter:saturate(.9)}
+.ct-hero-bg{position:absolute;inset:-30%;background:url('assets/img/texture.png') center/cover no-repeat;will-change:transform;filter:saturate(.9)}
 .ct-hero-ov{position:absolute;inset:0;background:rgba(var(--br-rgb),.42)}
 .ct-hero-cnt{position:relative;z-index:2;text-align:center;padding:0 1.5rem;display:flex;flex-direction:column;align-items:center}
+.ct-hero-cnt .lbl{color:rgba(var(--cr-rgb),.45);margin-bottom:1.25rem}
 .ct-hero-logo{height:74px;filter:brightness(0) invert(1);opacity:.92}
 .ct-hero-tag{margin-top:1.25rem;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(var(--cr-rgb),.56)}
 
