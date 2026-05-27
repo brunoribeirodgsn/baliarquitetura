@@ -274,7 +274,7 @@
       if (brandBg) {
         const rect = brandBg.closest('.brand-sec').getBoundingClientRect();
         const mid = rect.top + rect.height / 2 - window.innerHeight / 2;
-        brandBg.style.transform = `translateY(${mid * 0.16}px)`;
+        brandBg.style.transform = `translateY(${mid * 0.12}px)`;
       }
       heroBg.style.transform = `scale(${Math.max(1, 1.06 - y * .00006)}) translateY(${y * .04}px)`;
     }, { passive: true });
