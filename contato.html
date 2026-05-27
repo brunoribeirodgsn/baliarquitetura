@@ -41,7 +41,7 @@
 
     <!-- Hero com textura + logo -->
     <div class="ct-hero">
-      <div class="ct-hero-bg"></div>
+      <div class="ct-hero-bg" id="ctHeroBg"></div>
       <div class="ct-hero-ov"></div>
       <div class="ct-hero-cnt">
         <img src="assets/logotipo/PNG/Ativo 10@288x-8.png" alt="Bali" class="ct-hero-logo rv">
@@ -127,6 +127,14 @@
       });
     }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
     rvEls.forEach(el => rvObs.observe(el));
+
+    /* ── Parallax no hero de textura ───────────────────────── */
+    const ctHeroBg = document.getElementById('ctHeroBg');
+    window.addEventListener('scroll', () => {
+      if (ctHeroBg) {
+        ctHeroBg.style.transform = `translateY(${window.scrollY * 0.22}px)`;
+      }
+    }, { passive: true });
   </script>
 </body>
 

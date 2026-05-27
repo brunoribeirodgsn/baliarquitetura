@@ -185,7 +185,7 @@ body.has-custom-cursor .cur{display:block}
 .ct-simple-links .ct-link:hover{color:var(--br);border-color:var(--br)}
 
 /* ── Contact page hero ───────────────────────────────────── */
-.ct-hero{height:70vh;min-height:480px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--br)}
+.ct-hero{height:35vh;min-height:240px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--br)}
 .ct-hero-bg{position:absolute;inset:-12%;background:url('assets/img/texture.png') center/cover no-repeat;will-change:transform;filter:saturate(.9)}
 .ct-hero-ov{position:absolute;inset:0;background:rgba(var(--br-rgb),.42)}
 .ct-hero-cnt{position:relative;z-index:2;text-align:center;padding:0 1.5rem;display:flex;flex-direction:column;align-items:center}
