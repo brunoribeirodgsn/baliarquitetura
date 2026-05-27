@@ -22,11 +22,11 @@
 
   <nav class="nav-ov" id="navOv" aria-label="Navegação principal">
     <ul>
-      <li><a href="#sobre" class="lk" onclick="closeNav()">sobre</a></li>
+      <li><a href="index.html" class="lk" onclick="closeNav()">início</a></li>
+      <li><a href="sobre.html" class="lk" onclick="closeNav()">sobre</a></li>
       <li><a href="projetos.html" class="lk">projetos</a></li>
-      <li><a href="#galeria" class="lk" onclick="closeNav()">galeria</a></li>
-      <li><a href="#servicos" class="lk" onclick="closeNav()">serviços</a></li>
-      <li><a href="#contato" class="lk" onclick="closeNav()">contato</a></li>
+      <li><a href="servicos.html" class="lk">serviços</a></li>
+      <li><a href="contato.html" class="lk">contato</a></li>
     </ul>
     <div class="nav-ov-foot">
       <p>arquitetura & interiores</p>
@@ -46,8 +46,8 @@
         <div class="hero-row">
           <p class="htag">Ajudamos você a realizar os seus sonhos</p>
           <div class="hero-actions">
-            <a href="#contato" class="btn-main">comece seu projeto</a>
-            <a href="#projetos" class="btn-ghost">ver portfólio</a>
+            <a href="contato.html" class="btn-main">comece seu projeto</a>
+            <a href="projetos.html" class="btn-ghost">ver portfólio</a>
           </div>
         </div>
       </div>
@@ -132,68 +132,52 @@
       <div class="proj-hdr rv">
         <div>
           <span class="lbl">Portfólio</span>
-          <h2 class="h2 home-proj-logo" aria-label="Bali Arquitetura">
-            <img src="assets/logotipo/PNG/Ativo 8@288x-8.png" alt="Bali">
-          </h2>
+          <h2 class="h2">Projetos autorais,<br><em>reformas e interiores.</em></h2>
         </div>
-        <a href="#contato" class="lk soft-link">pedir um projeto parecido</a>
       </div>
 
-      <div class="proj-grid">
-        <a href="#contato" class="proj p1" aria-label="Apartamento Laranjeiras">
-          <div class="pw"><img data-src="assets/img/sala.png" alt="Sala de apartamento com mobiliário sob medida">
-          </div>
-          <div class="proj-info"><span class="pn">Apartamento Laranjeiras</span><span class="pt">Residencial /
-              Interiores</span></div>
-        </a>
-        <a href="#contato" class="proj p2" aria-label="Casa Gávea">
-          <div class="pw"><img data-src="assets/img/ext.png" alt="Fachada residencial com paisagismo"></div>
-          <div class="proj-info"><span class="pn">Casa Gávea</span><span class="pt">Arquitetura / Reforma</span></div>
-        </a>
-        <a href="#contato" class="proj p3" aria-label="Cozinha Botafogo">
-          <div class="pw"><img data-src="assets/img/cozinha.png" alt="Cozinha planejada com bancada clara"></div>
-          <div class="proj-info"><span class="pn">Cozinha Botafogo</span><span class="pt">Reforma / Execução</span>
-          </div>
-        </a>
-        <a href="#contato" class="proj p4" aria-label="Suíte Copacabana">
-          <div class="pw"><img data-src="assets/img/quarto.png" alt="Quarto acolhedor com iluminação indireta"></div>
-          <div class="proj-info"><span class="pn">Suíte Copacabana</span><span class="pt">Interiores / 2025</span></div>
-        </a>
+      <div class="proj-slide-wrap" id="projSlideWrap" aria-label="Slideshow de projetos">
+
+        <div class="proj-slide active" aria-hidden="false">
+          <img src="assets/img/sala.png" alt="Sala de apartamento com mobiliário sob medida">
+        </div>
+
+        <div class="proj-slide" aria-hidden="true">
+          <img src="assets/img/ext.png" alt="Fachada residencial com paisagismo">
+        </div>
+
+        <div class="proj-slide" aria-hidden="true">
+          <img src="assets/img/cozinha.png" alt="Cozinha planejada com bancada clara">
+        </div>
+
+        <div class="proj-slide" aria-hidden="true">
+          <img src="assets/img/quarto.png" alt="Quarto acolhedor com iluminação indireta">
+        </div>
+
+        <div class="proj-slide" aria-hidden="true">
+          <img src="assets/img/sala2.png" alt="Sala com tons naturais e madeira">
+        </div>
+
+        <div class="proj-slide" aria-hidden="true">
+          <img src="assets/img/hero.png" alt="Sala integrada com iluminação natural">
+        </div>
+
+        <!-- Indicadores -->
+        <div class="proj-dots" role="tablist" aria-label="Navegar entre projetos">
+          <button class="proj-dot active" data-idx="0" role="tab" aria-selected="true" aria-label="Projeto 1"></button>
+          <button class="proj-dot" data-idx="1" role="tab" aria-selected="false" aria-label="Projeto 2"></button>
+          <button class="proj-dot" data-idx="2" role="tab" aria-selected="false" aria-label="Projeto 3"></button>
+          <button class="proj-dot" data-idx="3" role="tab" aria-selected="false" aria-label="Projeto 4"></button>
+          <button class="proj-dot" data-idx="4" role="tab" aria-selected="false" aria-label="Projeto 5"></button>
+          <button class="proj-dot" data-idx="5" role="tab" aria-selected="false" aria-label="Projeto 6"></button>
+        </div>
+
+        <!-- Link -->
+        <a href="projetos.html" class="proj-slide-cta">ver todos os projetos</a>
+
       </div>
     </section>
 
-    <section id="galeria" class="gallery-sec">
-      <div class="gallery-head rv">
-        <span class="lbl">Galeria</span>
-        <h2 class="h2">Imagens, detalhes<br><em>e cenas de obra.</em></h2>
-      </div>
-      <div class="gallery-track" id="galleryTrack">
-        <button class="g-card rv" data-full="assets/img/hero.png" aria-label="Abrir imagem da sala integrada">
-          <img src="assets/img/hero.png" alt="Sala integrada de projeto Bali">
-          <span>foto</span>
-        </button>
-        <button class="g-card rv d1 video-card" data-full="assets/img/proj1.png"
-          aria-label="Abrir prévia de vídeo de processo">
-          <img src="assets/img/proj1.png" alt="Prévia visual de processo de projeto">
-          <span>vídeo</span>
-        </button>
-        <button class="g-card rv d2" data-full="assets/img/proj2.png"
-          aria-label="Abrir imagem de detalhe de interiores">
-          <img src="assets/img/proj2.png" alt="Detalhe de interiores com textura natural">
-          <span>foto</span>
-        </button>
-        <button class="g-card rv d3 video-card" data-full="assets/img/proj3.png"
-          aria-label="Abrir prévia de vídeo de obra">
-          <img src="assets/img/proj3.png" alt="Prévia visual de acompanhamento de obra">
-          <span>vídeo</span>
-        </button>
-        <button class="g-card rv d4" data-full="assets/img/sala2.png"
-          aria-label="Abrir imagem de ambiente acolhedor">
-          <img src="assets/img/sala2.png" alt="Ambiente acolhedor com madeira e tons claros">
-          <span>foto</span>
-        </button>
-      </div>
-    </section>
 
     <div class="brand-sec">
       <div class="brand-bg" id="brandBg"></div>
@@ -201,107 +185,36 @@
       <div class="brand-cnt rv">
         <img src="assets/logotipo/PNG/Ativo 10@288x-8.png" alt="Bali">
         <p>texturas naturais · desenho sob medida · obra possível</p>
+        <div class="brand-social">
+          <a href="https://wa.me/5524992237645" target="_blank" rel="noopener" aria-label="WhatsApp" class="brand-social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" class="brand-social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://pinterest.com/" target="_blank" rel="noopener" aria-label="Pinterest" class="brand-social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok" class="brand-social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.89a8.18 8.18 0 004.79 1.53V7.01a4.85 4.85 0 01-1.02-.32z"/></svg>
+          </a>
+          <a href="mailto:arquitetodiegodelgado@gmail.com" aria-label="Email" class="brand-social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
 
-    <section id="servicos" class="srv-sec">
-      <span class="lbl rv">O que fazemos</span>
-      <h2 class="h2 rv d1">Serviços para<br><em>cada etapa.</em></h2>
-      <div class="srv-grid">
-        <div class="srv rv"><span class="srv-n">01</span>
-          <p class="srv-t">Projeto Arquitetônico</p>
-          <p class="srv-d">Estudo preliminar, anteprojeto, compatibilização e documentação técnica para construir ou
-            reformar.</p>
-        </div>
-        <div class="srv rv d1"><span class="srv-n">02</span>
-          <p class="srv-t">Design de Interiores</p>
-          <p class="srv-d">Layout, materiais, marcenaria, iluminação, mobiliário e detalhes para ambientes mais
-            funcionais.</p>
-        </div>
-        <div class="srv rv d2"><span class="srv-n">03</span>
-          <p class="srv-t">Reforma</p>
-          <p class="srv-d">Planejamento para transformar espaços existentes com previsibilidade, beleza e menos
-            improviso.</p>
-        </div>
-        <div class="srv rv d1"><span class="srv-n">04</span>
-          <p class="srv-t">Consultoria</p>
-          <p class="srv-d">Orientação pontual para compra de imóvel, tomada de decisão, materiais e prioridades de obra.
-          </p>
-        </div>
-        <div class="srv rv d2"><span class="srv-n">05</span>
-          <p class="srv-t">Comercial</p>
-          <p class="srv-d">Projetos para escritórios, lojas e espaços de atendimento que comunicam marca e melhoram
-            fluxo.</p>
-        </div>
-        <div class="srv rv d3"><span class="srv-n">06</span>
-          <p class="srv-t">Acompanhamento</p>
-          <p class="srv-d">Visitas técnicas e alinhamento com fornecedores para manter a execução fiel ao projeto
-            aprovado.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="proc-sec">
-      <span class="lbl rv">Como trabalhamos</span>
-      <h2 class="h2 rv d1">Um processo simples<br><em>para decidir melhor.</em></h2>
-      <div class="proc-grid">
-        <div class="step rv">
-          <div class="step-n">01</div>
-          <p class="step-t">Briefing</p>
-          <p class="step-d">Entendemos rotina, referências, investimento, prazo e o que precisa mudar no espaço.</p>
-        </div>
-        <div class="step rv d1">
-          <div class="step-n">02</div>
-          <p class="step-t">Conceito</p>
-          <p class="step-d">Criamos uma linguagem visual clara, com moodboard, direção de materiais e primeiros estudos.
-          </p>
-        </div>
-        <div class="step rv d2">
-          <div class="step-n">03</div>
-          <p class="step-t">Projeto</p>
-          <p class="step-d">Desenvolvemos desenhos, detalhamentos e especificações para orçar e executar com segurança.
-          </p>
-        </div>
-        <div class="step rv d3">
-          <div class="step-n">04</div>
-          <p class="step-t">Obra</p>
-          <p class="step-d">Acompanhamos fornecedores e etapas essenciais para preservar qualidade, prazo e intenção.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contato" class="contact-sec">
-      <div class="ct-simple">
-        <span class="lbl rv">Vamos conversar</span>
-        <h2 class="h2 rv d1">Pronto para<br><em>começar?</em></h2>
-        <p class="ct-simple-p rv d2">Fale com a gente pelo WhatsApp e conte sobre o seu projeto. Respondemos rápido e sem complicação.</p>
-        <a href="https://wa.me/5524992237645" target="_blank" rel="noopener" class="ct-wa-btn rv d3" id="ctaWhatsapp">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Falar no WhatsApp
-        </a>
-        <div class="ct-simple-links rv d4">
-          <a href="mailto:arquitetodiegodelgado@gmail.com" class="ct-link">arquitetodiegodelgado@gmail.com</a>
-          <a href="tel:+5524992237645" class="ct-link">(24) 99223-7645</a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="ct-link">Instagram</a>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox-close" type="button" aria-label="Fechar imagem">fechar</button>
-    <img src="" alt="">
-  </div>
-
   <footer>
-    <div class="f-logo"><img src="assets/logotipo/PNG/Ativo 10@288x-8.png" alt="Bali"></div>
     <p class="f-copy">CNPJ 64.661.800/0001-36 · © 2026 Bali Arquitetura. Todos os direitos reservados.</p>
     <div class="f-links">
       <a href="#sobre">Sobre</a>
-      <a href="#projetos">Projetos</a>
-      <a href="#galeria">Galeria</a>
-      <a href="#contato">Contato</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="galeria.html">Galeria</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="contato.html">Contato</a>
     </div>
   </footer>
 
@@ -385,27 +298,37 @@
       });
     }, { threshold: .1 });
     imgs.forEach(img => imgObs.observe(img));
+    /* ── Slideshow portfólio ──────────────────────────────── */
+    (function() {
+      const slides = document.querySelectorAll('.proj-slide');
+      const dots   = document.querySelectorAll('.proj-dot');
+      const curr   = document.getElementById('projCurr');
+      if (!slides.length) return;
 
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    document.querySelectorAll('.g-card').forEach(card => {
-      card.addEventListener('click', () => {
-        lightboxImg.src = card.dataset.full;
-        lightboxImg.alt = card.querySelector('img').alt;
-        lightbox.classList.add('on');
-        lightbox.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-    function closeLightbox() {
-      lightbox.classList.remove('on');
-      lightbox.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-    document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+      let idx = 0, timer;
 
+      function goTo(n) {
+        slides[idx].classList.remove('active');
+        slides[idx].setAttribute('aria-hidden', 'true');
+        dots[idx].classList.remove('active');
+        dots[idx].setAttribute('aria-selected', 'false');
+        idx = (n + slides.length) % slides.length;
+        slides[idx].classList.add('active');
+        slides[idx].setAttribute('aria-hidden', 'false');
+        dots[idx].classList.add('active');
+        dots[idx].setAttribute('aria-selected', 'true');
+        if (curr) curr.textContent = String(idx + 1).padStart(2, '0');
+      }
+
+      function start() { timer = setInterval(() => goTo(idx + 1), 4000); }
+      function stop()  { clearInterval(timer); }
+
+      start();
+
+      dots.forEach(d => d.addEventListener('click', () => {
+        stop(); goTo(+d.dataset.idx); start();
+      }));
+    })();
 
   </script>
 </body>
