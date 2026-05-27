@@ -175,7 +175,7 @@ body.has-custom-cursor .cur{display:block}
 
 /* ── Contact simplified ─────────────────────────────────── */
 .contact-sec{background:var(--cr)}
-.ct-simple{max-width:680px;margin:0 auto;padding:clamp(5rem,10vw,9rem) clamp(1.25rem,4vw,3rem);text-align:center;display:flex;flex-direction:column;align-items:center}
+.ct-simple{max-width:680px;margin:0 auto;padding:clamp(2.5rem,5vw,4.5rem) clamp(1.25rem,4vw,3rem);text-align:center;display:flex;flex-direction:column;align-items:center}
 .ct-simple-p{font-size:1rem;line-height:1.85;color:rgba(var(--br-rgb),.62);max-width:480px;margin-bottom:2.5rem}
 .ct-wa-btn{display:inline-flex;align-items:center;gap:.65rem;background:var(--br);color:var(--cr);text-decoration:none;border-radius:999px;padding:0 38px;min-height:58px;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;transition:background .3s,transform .3s;margin-bottom:2.5rem}
 .ct-wa-btn:hover{background:var(--ol);transform:translateY(-3px)}
