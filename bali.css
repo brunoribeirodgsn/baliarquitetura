@@ -26,6 +26,7 @@ body.has-custom-cursor,body.has-custom-cursor a,body.has-custom-cursor button,bo
 body.has-custom-cursor .cur{display:block}
 .cur.big{width:58px;height:58px;background:rgba(var(--ol-rgb),.16);border:1px solid rgba(var(--br-rgb),.28)}
 .cur.inv{background:var(--cr);mix-blend-mode:difference}
+.cur.inv.big{background:#fbc26c}
 
 .quick-cta{position:fixed;top:27px;right:94px;z-index:300;color:var(--br);text-decoration:none;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;border:1px solid rgba(var(--br-rgb),.28);border-radius:999px;padding:10px 16px;background:rgba(var(--cr-rgb),.45);backdrop-filter:blur(12px);transition:background .3s,color .3s,border-color .3s}
 .quick-cta-left{right:auto;left:36px}
@@ -140,13 +141,13 @@ body.has-custom-cursor .cur{display:block}
 .brand-sec{height:56vh;min-height:380px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--br)}
 .brand-bg{position:absolute;inset:-30%;background:url('assets/img/texture.png') center/cover no-repeat;transform:translateY(0);will-change:transform;filter:saturate(.9)}
 .brand-ov{position:absolute;inset:0;background:rgba(var(--br-rgb),.46)}
-.brand-cnt{position:relative;z-index:2;text-align:center;padding:0 1.5rem}
+.brand-cnt{position:relative;z-index:10000;text-align:center;padding:0 1.5rem}
 .brand-cnt img{height:74px;filter:brightness(0) invert(1);opacity:.92}
 .brand-cnt p{margin-top:1.25rem;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(var(--cr-rgb),.56)}
 
 /* Social icons in brand-sec */
 .brand-social{display:flex;align-items:center;gap:1.5rem;margin-top:2rem;justify-content:center}
-.brand-social-link{display:flex;align-items:center;justify-content:center;width:36px;height:36px;color:rgba(var(--cr-rgb),.65);transition:color .3s,transform .3s}
+.brand-social-link{display:flex;align-items:center;justify-content:center;width:36px;height:36px;color:rgba(var(--cr-rgb),.65);transition:color .3s,transform .3s;position:relative;z-index:10000}
 .brand-social-link svg{width:20px;height:20px}
 .brand-social-link:hover{color:var(--cr);transform:translateY(-3px)}
 
