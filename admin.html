@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Bali Arquitetura</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="stylesheet" href="admin.css">
+  <style>
+    @font-face{font-family:'DM Sans';src:url('assets/fonts/DMSans-VariableFont_opsz,wght.ttf') format('truetype');font-weight:100 1000;font-style:normal;font-display:swap}
+  </style>
+</head>
+<body>
+
+<!-- ── LOGIN ──────────────────────────────────────────────────── -->
+<div id="loginScreen">
+  <div class="login-box">
+    <img src="assets/logotipo/PNG/Ativo 10@288x-8.png" alt="Bali" class="login-logo">
+    <span class="login-lbl">Área restrita</span>
+    <h1 class="login-title">Painel<br>Administrativo</h1>
+    <form id="loginForm" autocomplete="off">
+      <div class="login-field">
+        <input type="password" id="loginPass" placeholder="Senha de acesso" autocomplete="current-password">
+      </div>
+      <button type="submit" class="login-btn">Entrar</button>
+    </form>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<!-- ── APP SHELL ──────────────────────────────────────────────── -->
+<div id="appShell">
+
+  <button class="adm-mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <b></b><b></b><b></b>
+  </button>
+
+  <!-- Sidebar -->
+  <aside class="adm-sidebar" id="admSidebar">
+    <div class="adm-sidebar-logo">
+      <img src="assets/logotipo/PNG/Ativo 8@288x-8.png" alt="Bali">
+      <span>Admin</span>
+    </div>
+    <nav class="adm-nav">
+      <div class="adm-nav-section">Painel</div>
+      <button class="adm-nav-item active" data-goto="dashboard">
+        <svg class="adm-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </button>
+      <div class="adm-nav-section" style="margin-top:.5rem">Conteúdo</div>
+      <button class="adm-nav-item" data-goto="hero">
+        <svg class="adm-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 10l4 4 4-4"/></svg>
+        Imagem Hero
+      </button>
+      <button class="adm-nav-item" data-goto="portfolio">
+        <svg class="adm-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="5" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="3" y="12" width="7" height="9" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/></svg>
+        Portfólio Home
+      </button>
+      <button class="adm-nav-item" data-goto="projetos">
+        <svg class="adm-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h11"/></svg>
+        Projetos
+      </button>
+    </nav>
+    <div class="adm-sidebar-foot">
+      <a href="index.html" class="adm-site-link" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Ver site
+      </a>
+      <br><br>
+      <button class="adm-logout-btn" id="logoutBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sair
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="adm-main">
+    <div class="adm-topbar">
+      <span class="adm-topbar-title" id="topbarTitle">Dashboard</span>
+      <span class="adm-topbar-badge">Bali Arquitetura</span>
+    </div>
+
+    <div class="adm-content">
+
+      <!-- DASHBOARD -->
+      <div class="adm-section active" id="secDashboard">
+        <h1 class="adm-section-title">Bem-vindo ao painel</h1>
+        <p class="adm-section-sub">Gerencie o conteúdo do site Bali Arquitetura.</p>
+        <div class="adm-stats">
+          <div class="adm-stat"><div class="adm-stat-val" id="statProjetos">—</div><div class="adm-stat-lbl"><span class="adm-stat-dot"></span>Projetos</div></div>
+          <div class="adm-stat"><div class="adm-stat-val" id="statPortfolio">—</div><div class="adm-stat-lbl"><span class="adm-stat-dot"></span>Portfólio</div></div>
+          <div class="adm-stat"><div class="adm-stat-val" id="statHero">—</div><div class="adm-stat-lbl"><span class="adm-stat-dot"></span>Hero custom</div></div>
+        </div>
+        <div class="adm-card">
+          <div class="adm-card-title">Acesso rápido</div>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+            <button class="adm-btn adm-btn-ghost" id="qHero">Trocar Hero</button>
+            <button class="adm-btn adm-btn-ghost" id="qPortfolio">Gerir Portfólio</button>
+            <button class="adm-btn adm-btn-primary" id="qNewProject">+ Novo Projeto</button>
+          </div>
+        </div>
+        <div class="adm-card">
+          <div class="adm-card-title">Instruções de uso</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.85rem">
+            <li style="font-size:.82rem;color:rgba(247,246,228,.55);line-height:1.6"><strong style="color:var(--ol)">Hero:</strong> Imagem principal da home. Ideal: <strong style="color:var(--cr)">1920×1080px</strong>.</li>
+            <li style="font-size:.82rem;color:rgba(247,246,228,.55);line-height:1.6"><strong style="color:var(--ol)">Portfólio:</strong> Slideshow na seção de projetos da home. Máx. 10 imagens. Arraste para reordenar.</li>
+            <li style="font-size:.82rem;color:rgba(247,246,228,.55);line-height:1.6"><strong style="color:var(--ol)">Projetos:</strong> A <strong style="color:var(--cr)">primeira foto</strong> = capa + hero do projeto. Arraste para reordenar fotos e projetos.</li>
+            <li style="font-size:.82rem;color:rgba(247,246,228,.55);line-height:1.6"><strong style="color:var(--ol)">Senha padrão:</strong> bali2026</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- HERO -->
+      <div class="adm-section" id="secHero">
+        <h1 class="adm-section-title">Imagem Hero</h1>
+        <p class="adm-section-sub">Imagem de fundo do topo da página inicial.</p>
+        <div class="adm-card">
+          <div class="adm-card-title">Preview atual</div>
+          <div id="heroPreview" style="display:none" class="adm-img-preview">
+            <img id="heroPreviewImg" src="" alt="Hero">
+            <div class="adm-img-preview-actions">
+              <button class="adm-btn adm-btn-danger adm-btn-icon" id="heroDeleteBtn" title="Remover">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
+              </button>
+            </div>
+          </div>
+          <div id="heroNoCover" style="padding:1.5rem 0;text-align:center;color:rgba(247,246,228,.3);font-size:.78rem">Usando imagem padrão do site</div>
+          <div class="adm-img-size-hint">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p>Ideal: <strong>1920×1080 px</strong> · JPG/WebP · máx. <strong>800 KB</strong></p>
+          </div>
+        </div>
+        <div class="adm-card">
+          <div class="adm-card-title">Upload / Trocar imagem</div>
+          <div class="adm-upload-zone" id="heroUploadZone">
+            <input type="file" id="heroFileInput" accept="image/*">
+            <svg class="adm-upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p class="adm-upload-text">Arraste ou clique para selecionar</p>
+            <p class="adm-upload-hint">JPG, PNG ou WebP · máx. 10 MB</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PORTFOLIO -->
+      <div class="adm-section" id="secPortfolio">
+        <h1 class="adm-section-title">Portfólio — Home</h1>
+        <p class="adm-section-sub">Slideshow na seção de projetos da home. Máx. <strong style="color:var(--ol)">10 imagens</strong>. Arraste para reordenar.</p>
+        <div class="adm-card">
+          <div class="adm-card-title">Imagens <span id="portCount" style="color:rgba(247,246,228,.35);font-size:.56rem;margin-left:.5rem"></span></div>
+          <div class="adm-portfolio-grid" id="portfolioGrid"></div>
+          <div style="margin-top:1.25rem;display:flex;gap:.75rem;flex-wrap:wrap">
+            <button class="adm-btn adm-btn-primary" id="portSaveBtn">Salvar ordem</button>
+            <button class="adm-btn adm-btn-danger" id="portClearBtn">Restaurar padrão</button>
+          </div>
+          <div class="adm-img-size-hint" style="margin-top:1.25rem">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p>Ideal: <strong>1200×600 px</strong> (2:1) · JPG/WebP · máx. <strong>500 KB</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJETOS — Lista -->
+      <div class="adm-section" id="secProjetos">
+        <div id="projetosListView">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;gap:1rem;flex-wrap:wrap">
+            <div>
+              <h1 class="adm-section-title">Projetos</h1>
+              <p class="adm-section-sub" style="margin-bottom:0">Arraste pelo ☰ para reordenar.</p>
+            </div>
+            <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+              <button class="adm-btn adm-btn-ghost" id="saveProjetosOrderBtn" style="display:none">Salvar ordem</button>
+              <button class="adm-btn adm-btn-primary" id="newProjetoBtn">+ Novo projeto</button>
+            </div>
+          </div>
+          <div class="adm-proj-list" id="projetosListEl"></div>
+        </div>
+
+        <!-- PROJETOS — Formulário -->
+        <div id="projetoFormView" style="display:none">
+          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap">
+            <button class="adm-btn adm-btn-ghost" id="backToListBtn">← Voltar</button>
+            <h1 class="adm-section-title" id="formTitle" style="margin-bottom:0">Novo Projeto</h1>
+          </div>
+          <form id="projetoForm">
+            <input type="hidden" id="fId">
+            <div class="adm-card">
+              <div class="adm-card-title">Informações gerais</div>
+              <div class="adm-field">
+                <label class="adm-label" for="fNome">Título *</label>
+                <input class="adm-input" type="text" id="fNome" placeholder="Ex: Apartamento Laranjeiras" required>
+              </div>
+              <div class="adm-grid-3">
+                <div class="adm-field"><label class="adm-label" for="fAno">Ano</label><input class="adm-input" type="text" id="fAno" placeholder="2025"></div>
+                <div class="adm-field"><label class="adm-label" for="fArea">Área</label><input class="adm-input" type="text" id="fArea" placeholder="120 m²"></div>
+                <div class="adm-field"><label class="adm-label" for="fLocal">Local</label><input class="adm-input" type="text" id="fLocal" placeholder="Rio de Janeiro"></div>
+              </div>
+              <div class="adm-field">
+                <label class="adm-label" for="fCategoria">Categoria *</label>
+                <select class="adm-select" id="fCategoria" required>
+                  <option value="">Selecione…</option>
+                  <option value="Residencial">Residencial</option>
+                  <option value="Interiores">Interiores</option>
+                  <option value="Reforma">Reforma</option>
+                  <option value="Comercial">Comercial</option>
+                </select>
+              </div>
+              <div class="adm-field">
+                <label class="adm-label">Tags</label>
+                <div class="adm-tags-group">
+                  <input type="checkbox" class="adm-tag-check" id="tResidencial" value="Residencial"><label class="adm-tag-label" for="tResidencial">Residencial</label>
+                  <input type="checkbox" class="adm-tag-check" id="tInteriores" value="Interiores"><label class="adm-tag-label" for="tInteriores">Interiores</label>
+                  <input type="checkbox" class="adm-tag-check" id="tReforma" value="Reforma"><label class="adm-tag-label" for="tReforma">Reforma</label>
+                  <input type="checkbox" class="adm-tag-check" id="tComercial" value="Comercial"><label class="adm-tag-label" for="tComercial">Comercial</label>
+                  <input type="checkbox" class="adm-tag-check" id="tArquitetura" value="Arquitetura"><label class="adm-tag-label" for="tArquitetura">Arquitetura</label>
+                  <input type="checkbox" class="adm-tag-check" id="tFachada" value="Fachada"><label class="adm-tag-label" for="tFachada">Fachada</label>
+                  <input type="checkbox" class="adm-tag-check" id="tMarcenaria" value="Marcenaria"><label class="adm-tag-label" for="tMarcenaria">Marcenaria</label>
+                  <input type="checkbox" class="adm-tag-check" id="tCozinha" value="Cozinha"><label class="adm-tag-label" for="tCozinha">Cozinha</label>
+                  <input type="checkbox" class="adm-tag-check" id="tQuarto" value="Quarto"><label class="adm-tag-label" for="tQuarto">Quarto</label>
+                  <input type="checkbox" class="adm-tag-check" id="tEscritorio" value="Escritório"><label class="adm-tag-label" for="tEscritorio">Escritório</label>
+                </div>
+              </div>
+              <div class="adm-field">
+                <label class="adm-label" for="fDescricao">Descrição</label>
+                <textarea class="adm-textarea" id="fDescricao" rows="5" placeholder="Descreva o projeto…"></textarea>
+              </div>
+            </div>
+            <div class="adm-card">
+              <div class="adm-card-title">Fotos do projeto</div>
+              <p style="font-size:.75rem;color:rgba(247,246,228,.4);margin-bottom:1rem;line-height:1.6">A <strong style="color:var(--ol)">primeira foto</strong> é a capa e o hero. Arraste para reordenar.</p>
+              <div class="adm-img-size-hint" style="margin-bottom:1rem">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <p>Ideal: <strong>1600×1060 px</strong> · JPG/WebP · máx. <strong>800 KB</strong></p>
+              </div>
+              <div class="adm-proj-gallery" id="projGallery"></div>
+              <div class="adm-upload-zone" style="margin-top:.75rem">
+                <input type="file" id="projPhotoInput" accept="image/*" multiple>
+                <svg class="adm-upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <p class="adm-upload-text">Clique para adicionar fotos</p>
+                <p class="adm-upload-hint">JPG, PNG ou WebP</p>
+              </div>
+            </div>
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+              <button type="submit" class="adm-btn adm-btn-primary">Salvar projeto</button>
+              <button type="button" class="adm-btn adm-btn-ghost" id="cancelFormBtn">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div><!-- /adm-content -->
+  </div><!-- /adm-main -->
+</div><!-- /appShell -->
+
+<!-- Toast -->
+<div class="adm-toast" id="admToast"></div>
+
+<!-- Modal de confirmação -->
+<div class="adm-modal-overlay" id="confirmModal">
+  <div class="adm-modal">
+    <h3 id="confirmTitle">Confirmar</h3>
+    <p id="confirmMsg"></p>
+    <div class="adm-modal-actions">
+      <button class="adm-btn adm-btn-ghost" id="confirmCancel">Cancelar</button>
+      <button class="adm-btn adm-btn-danger" id="confirmOk">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<script src="projetos-data.js"></script>
+<script src="bali-data.js"></script>
+<script>
+/* ================================================================
+   ADMIN CONTROLLER
+   Estrutura: todos os dados e funções definidos antes de serem usados.
+================================================================ */
+
+/* ── Utilitários ──────────────────────────────────────────────── */
+function admToast(msg, tipo) {
+  var el = document.getElementById('admToast');
+  el.textContent = msg;
+  el.className = 'adm-toast show' + (tipo === 'err' ? ' error' : '');
+  clearTimeout(el._t);
+  el._t = setTimeout(function() { el.classList.remove('show'); }, 2800);
+}
+
+function admConfirm(titulo, msg) {
+  return new Promise(function(resolve) {
+    var modal = document.getElementById('confirmModal');
+    document.getElementById('confirmTitle').textContent = titulo;
+    document.getElementById('confirmMsg').textContent   = msg;
+    modal.classList.add('show');
+    var okBtn  = document.getElementById('confirmOk');
+    var canBtn = document.getElementById('confirmCancel');
+    function done(v) {
+      modal.classList.remove('show');
+      okBtn.removeEventListener('click', onOk);
+      canBtn.removeEventListener('click', onCan);
+      resolve(v);
+    }
+    function onOk()  { done(true);  }
+    function onCan() { done(false); }
+    okBtn.addEventListener('click', onOk);
+    canBtn.addEventListener('click', onCan);
+  });
+}
+
+/* ── Touch Reordering Helper ──────────────────────────────────── */
+function enableTouchDrag(containerId, selector, getArray, setArray, renderFn) {
+  var container = document.getElementById(containerId);
+  if (!container) return;
+
+  var activeEl = null;
+  
+  container.addEventListener('touchstart', function(e) {
+    var target = e.target.closest(selector);
+    if (!target) return;
+    activeEl = target;
+    activeEl.classList.add('drag-src');
+  }, { passive: true });
+
+  container.addEventListener('touchmove', function(e) {
+    if (!activeEl) return;
+    var touch = e.touches[0];
+    
+    var elem = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (!elem) return;
+    
+    var target = elem.closest(selector);
+    if (target && target !== activeEl && target.parentNode === container) {
+      e.preventDefault();
+      container.querySelectorAll(selector).forEach(function(el) {
+        el.classList.remove('drag-over-tgt');
+      });
+      target.classList.add('drag-over-tgt');
+    }
+  }, { passive: false });
+
+  container.addEventListener('touchend', function(e) {
+    if (!activeEl) return;
+    activeEl.classList.remove('drag-src');
+    
+    var touch = e.changedTouches[0];
+    var elem = document.elementFromPoint(touch.clientX, touch.clientY);
+    
+    container.querySelectorAll(selector).forEach(function(el) {
+      el.classList.remove('drag-over-tgt');
+    });
+
+    if (elem) {
+      var target = elem.closest(selector);
+      if (target && target !== activeEl && target.parentNode === container) {
+        var srcIdx = +activeEl.dataset.idx;
+        var tgtIdx = +target.dataset.idx;
+        if (srcIdx !== tgtIdx) {
+          var arr = getArray();
+          var moved = arr.splice(srcIdx, 1)[0];
+          arr.splice(tgtIdx, 0, moved);
+          setArray(arr);
+          renderFn();
+        }
+      }
+    }
+    activeEl = null;
+  });
+}
+
+/* ── Navegação entre seções ───────────────────────────────────── */
+var sectionTitles = {
+  dashboard: 'Dashboard',
+  hero:      'Imagem Hero',
+  portfolio: 'Portfólio Home',
+  projetos:  'Projetos'
+};
+var sectionIds = {
+  dashboard: 'secDashboard',
+  hero:      'secHero',
+  portfolio: 'secPortfolio',
+  projetos:  'secProjetos'
+};
+
+function goSection(key) {
+  // Oculta todas as seções
+  var sections = document.querySelectorAll('.adm-section');
+  for (var i = 0; i < sections.length; i++) {
+    sections[i].classList.remove('active');
+  }
+  // Remove active de todos os botões nav
+  var navBtns = document.querySelectorAll('.adm-nav-item');
+  for (var j = 0; j < navBtns.length; j++) {
+    navBtns[j].classList.remove('active');
+  }
+  // Ativa a seção alvo
+  var targetSection = document.getElementById(sectionIds[key]);
+  if (targetSection) targetSection.classList.add('active');
+  // Ativa o botão de nav correspondente
+  var targetBtn = document.querySelector('[data-goto="' + key + '"]');
+  if (targetBtn) targetBtn.classList.add('active');
+  // Atualiza título
+  document.getElementById('topbarTitle').textContent = sectionTitles[key] || key;
+  // Fecha sidebar mobile
+  document.getElementById('admSidebar').classList.remove('open');
+  // Ação extra para projetos
+  if (key === 'projetos') {
+    renderProjetosList();
+    showListView();
+  }
+}
+
+// Registra cliques na sidebar
+document.querySelectorAll('.adm-nav-item[data-goto]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    goSection(btn.getAttribute('data-goto'));
+  });
+});
+
+// Mobile sidebar
+document.getElementById('mobileToggle').addEventListener('click', function() {
+  document.getElementById('admSidebar').classList.toggle('open');
+});
+
+/* ── Login ────────────────────────────────────────────────────── */
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var pass = document.getElementById('loginPass').value;
+  if (BaliAuth.check(pass)) {
+    BaliAuth.login(pass);
+    var ls = document.getElementById('loginScreen');
+    ls.classList.add('hide');
+    setTimeout(function() {
+      ls.style.display = 'none';
+      document.getElementById('appShell').classList.add('show');
+      BaliData.ready.then(initApp);
+    }, 500);
+  } else {
+    document.getElementById('loginError').textContent = 'Senha incorreta. Tente novamente.';
+    document.getElementById('loginPass').value = '';
+    document.getElementById('loginPass').focus();
+  }
+});
+
+// Auto-login se sessão ativa
+if (BaliAuth.isLogged()) {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('appShell').classList.add('show');
+  BaliData.ready.then(initApp);
+}
+
+document.getElementById('logoutBtn').addEventListener('click', function() {
+  admConfirm('Sair', 'Encerrar sessão?').then(function(ok) {
+    if (ok) { BaliAuth.logout(); location.reload(); }
+  });
+});
+
+/* ── initApp ──────────────────────────────────────────────────── */
+function initApp() {
+  updateDashboard();
+  initHero();
+  initPortfolio();
+  initProjetos();
+
+  // Botões de acesso rápido no dashboard
+  document.getElementById('qHero').addEventListener('click', function() { goSection('hero'); });
+  document.getElementById('qPortfolio').addEventListener('click', function() { goSection('portfolio'); });
+  document.getElementById('qNewProject').addEventListener('click', function() {
+    goSection('projetos');
+    setTimeout(openNewProject, 50);
+  });
+}
+
+/* ── Dashboard ────────────────────────────────────────────────── */
+function updateDashboard() {
+  var projs = BaliProjetos.getAll();
+  var port  = BaliPortfolio.get();
+  document.getElementById('statProjetos').textContent  = projs.length;
+  document.getElementById('statPortfolio').textContent = port ? port.length : '—';
+  document.getElementById('statHero').textContent      = BaliHero.hasCustom() ? 'Sim' : 'Não';
+}
+
+/* ═════════════════════════════════════════════════════════════════
+   HERO
+═════════════════════════════════════════════════════════════════ */
+function initHero() {
+  refreshHeroPreview();
+
+  document.getElementById('heroFileInput').addEventListener('change', function(e) {
+    if (e.target.files[0]) handleHeroFile(e.target.files[0]);
+  });
+
+  var zone = document.getElementById('heroUploadZone');
+  zone.addEventListener('dragover', function(e) { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', function() { zone.classList.remove('drag-over'); });
+  zone.addEventListener('drop', function(e) {
+    e.preventDefault(); zone.classList.remove('drag-over');
+    if (e.dataTransfer.files[0]) handleHeroFile(e.dataTransfer.files[0]);
+  });
+
+  document.getElementById('heroDeleteBtn').addEventListener('click', function() {
+    admConfirm('Remover hero', 'Voltar para a imagem padrão?').then(function(ok) {
+      if (ok) { BaliHero.remove(); refreshHeroPreview(); updateDashboard(); admToast('Hero removido.'); }
+    });
+  });
+}
+
+function refreshHeroPreview() {
+  var src = BaliHero.get();
+  var isCustom = !!src;
+  if (!src) src = 'assets/img/sala.png';
+
+  document.getElementById('heroPreviewImg').src = src;
+  document.getElementById('heroPreview').style.display = '';
+  document.getElementById('heroNoCover').style.display = isCustom ? 'none' : '';
+  document.getElementById('heroDeleteBtn').style.display = isCustom ? '' : 'none';
+}
+
+function handleHeroFile(file) {
+  if (!file.type.startsWith('image/')) { admToast('Selecione uma imagem.', 'err'); return; }
+  if (file.size > 10 * 1024 * 1024) { admToast('Imagem maior que 10 MB.', 'err'); return; }
+  baliReadFile(file, { maxWidth: 1920, maxHeight: 1080, quality: 0.82 }).then(function(b64) {
+    if (!BaliHero.set(b64)) {
+      admToast('Não foi possível salvar. Use uma imagem menor.', 'err');
+      return;
+    }
+    refreshHeroPreview();
+    updateDashboard();
+    admToast('✓ Hero salvo!');
+  }).catch(function() {
+    admToast('Não foi possível ler a imagem.', 'err');
+  });
+}
+
+/* ═════════════════════════════════════════════════════════════════
+   PORTFOLIO
+═════════════════════════════════════════════════════════════════ */
+var defaultImgs = [
+  { src: 'assets/img/sala.png',    alt: 'Sala de apartamento com mobiliário sob medida' },
+  { src: 'assets/img/ext.png',     alt: 'Fachada residencial com paisagismo' },
+  { src: 'assets/img/cozinha.png', alt: 'Cozinha planejada com bancada clara' },
+  { src: 'assets/img/quarto.png',  alt: 'Quarto acolhedor com iluminação indireta' },
+  { src: 'assets/img/sala2.png',   alt: 'Sala com tons naturais e madeira' },
+  { src: 'assets/img/hero.png',    alt: 'Sala integrada com iluminação natural' }
+];
+var portItems = [];
+var portDragIdx = null;
+
+function savePortfolioItems(message) {
+  var ok = BaliPortfolio.set(portItems.map(function(it) { return { src: it.src, alt: it.alt }; }));
+  if (!ok) {
+    admToast('Não foi possível salvar. Use imagens menores.', 'err');
+    return false;
+  }
+  updateDashboard();
+  if (message) admToast(message);
+  return true;
+}
+
+function initPortfolio() {
+  portItems = BaliPortfolio.get() || JSON.parse(JSON.stringify(defaultImgs));
+  renderPortfolio();
+  enableTouchDrag('portfolioGrid', '.adm-port-item', 
+    function() { return portItems; }, 
+    function(newArr) { portItems = newArr; savePortfolioItems('✓ Portfólio salvo!'); }, 
+    renderPortfolio
+  );
+
+  document.getElementById('portSaveBtn').addEventListener('click', function() {
+    savePortfolioItems('✓ Portfólio salvo!');
+  });
+
+  document.getElementById('portClearBtn').addEventListener('click', function() {
+    admConfirm('Restaurar padrão', 'As imagens enviadas serão apagadas.').then(function(ok) {
+      if (ok) { 
+        BaliPortfolio.remove(); 
+        portItems = JSON.parse(JSON.stringify(defaultImgs)); 
+        renderPortfolio(); 
+        updateDashboard(); 
+        admToast('Restaurado.'); 
+      }
+    });
+  });
+}
+
+function renderPortfolio() {
+  var grid = document.getElementById('portfolioGrid');
+  grid.innerHTML = '';
+  document.getElementById('portCount').textContent = portItems.length + '/10';
+
+  portItems.forEach(function(item, i) {
+    var div = document.createElement('div');
+    div.className = 'adm-port-item';
+    div.draggable = true;
+    div.dataset.idx = i;
+    var img = document.createElement('img');
+    img.src = item.src; img.alt = item.alt || '';
+    var num = document.createElement('span');
+    num.className = 'adm-port-item-num'; num.textContent = i + 1;
+    var del = document.createElement('button');
+    del.className = 'adm-port-item-del'; del.textContent = '✕'; del.title = 'Remover';
+    del.dataset.idx = i;
+    div.appendChild(img); div.appendChild(num); div.appendChild(del);
+    attachPortDrag(div);
+    del.addEventListener('click', function(e) {
+      e.stopPropagation();
+      portItems.splice(+del.dataset.idx, 1);
+      renderPortfolio();
+      savePortfolioItems('✓ Portfólio salvo!');
+    });
+    grid.appendChild(div);
+  });
+
+  if (portItems.length < 10) {
+    var add = document.createElement('div');
+    add.className = 'adm-port-add';
+    var inp = document.createElement('input');
+    inp.type = 'file'; inp.accept = 'image/*'; inp.multiple = true;
+    var lbl = document.createElement('span'); lbl.textContent = '+ foto';
+    add.appendChild(inp); add.appendChild(lbl);
+    inp.addEventListener('change', function(e) {
+      var files = Array.from(e.target.files).slice(0, 10 - portItems.length);
+      var promises = files.filter(function(f) { return f.type.startsWith('image/'); }).map(function(f) {
+        return baliReadFile(f, { maxWidth: 1400, maxHeight: 800, quality: 0.78 }).then(function(src) { portItems.push({ src: src, alt: f.name.replace(/\.[^.]+$/, '') }); });
+      });
+      Promise.all(promises).then(function() {
+        renderPortfolio();
+        savePortfolioItems('✓ Portfólio salvo!');
+      }).catch(function() {
+        admToast('Não foi possível ler uma das imagens.', 'err');
+      });
+    });
+    grid.appendChild(add);
+  }
+}
+
+function attachPortDrag(el) {
+  el.addEventListener('dragstart', function(e) {
+    portDragIdx = +el.dataset.idx;
+    el.classList.add('drag-src');
+    if (e.dataTransfer) {
+      e.dataTransfer.setData('text/plain', '');
+      e.dataTransfer.effectAllowed = 'move';
+    }
+  });
+  el.addEventListener('dragend',   function() { el.classList.remove('drag-src'); });
+  el.addEventListener('dragover',  function(e) { e.preventDefault(); el.classList.add('drag-over-tgt'); });
+  el.addEventListener('dragleave', function() { el.classList.remove('drag-over-tgt'); });
+  el.addEventListener('drop', function(e) {
+    e.preventDefault(); el.classList.remove('drag-over-tgt');
+    var tgt = +el.dataset.idx;
+    if (portDragIdx === null || portDragIdx === tgt) return;
+    var moved = portItems.splice(portDragIdx, 1)[0];
+    portItems.splice(tgt, 0, moved);
+    portDragIdx = null;
+    renderPortfolio();
+    savePortfolioItems('✓ Portfólio salvo!');
+  });
+}
+
+/* ═════════════════════════════════════════════════════════════════
+   PROJETOS
+═════════════════════════════════════════════════════════════════ */
+var projFotos    = [];
+var projListData = [];
+var projListDragIdx = null;
+
+function initProjetos() {
+  renderProjetosList();
+
+  enableTouchDrag('projetosListEl', '.adm-proj-row', 
+    function() { return projListData; }, 
+    function(newArr) { 
+      projListData = newArr; 
+      if (BaliProjetos.setAll(projListData)) {
+        updateDashboard();
+        admToast('✓ Ordem salva!');
+      } else {
+        admToast('Não foi possível salvar a ordem.', 'err');
+      }
+    }, 
+    renderProjetosList
+  );
+
+  enableTouchDrag('projGallery', '.adm-proj-photo', 
+    function() { return projFotos; }, 
+    function(newArr) { projFotos = newArr; }, 
+    renderProjGallery
+  );
+
+  document.getElementById('newProjetoBtn').addEventListener('click', openNewProject);
+  document.getElementById('backToListBtn').addEventListener('click', function() { showListView(); renderProjetosList(); });
+  document.getElementById('cancelFormBtn').addEventListener('click', function() { showListView(); renderProjetosList(); });
+  document.getElementById('projPhotoInput').addEventListener('change', handleProjPhotos);
+  document.getElementById('projetoForm').addEventListener('submit', saveProject);
+  document.getElementById('saveProjetosOrderBtn').addEventListener('click', function() {
+    BaliProjetos.setAll(projListData);
+    updateDashboard();
+    admToast('✓ Ordem salva!');
+    document.getElementById('saveProjetosOrderBtn').style.display = 'none';
+  });
+}
+
+function showListView() {
+  document.getElementById('projetosListView').style.display = '';
+  document.getElementById('projetoFormView').style.display = 'none';
+}
+
+function showFormView() {
+  document.getElementById('projetosListView').style.display = 'none';
+  document.getElementById('projetoFormView').style.display = '';
+}
+
+function openNewProject() {
+  document.getElementById('formTitle').textContent = 'Novo Projeto';
+  document.getElementById('projetoForm').reset();
+  document.getElementById('fId').value = '';
+  projFotos = [];
+  renderProjGallery();
+  showFormView();
+}
+
+function openEditProject(id) {
+  var proj = BaliProjetos.getById(id);
+  if (!proj) return;
+  document.getElementById('formTitle').textContent = 'Editar Projeto';
+  document.getElementById('fId').value       = proj.id;
+  document.getElementById('fNome').value     = proj.nome     || '';
+  document.getElementById('fAno').value      = proj.ano      || '';
+  document.getElementById('fArea').value     = proj.area     || '';
+  document.getElementById('fLocal').value    = proj.local    || '';
+  document.getElementById('fCategoria').value = proj.categoria || '';
+  document.getElementById('fDescricao').value = proj.descricao || '';
+  document.querySelectorAll('.adm-tag-check').forEach(function(cb) {
+    cb.checked = proj.tags && proj.tags.indexOf(cb.value) >= 0;
+  });
+  projFotos = (proj.fotos || []).map(function(src, i) { return { src: src, alt: 'Foto ' + (i + 1) }; });
+  renderProjGallery();
+  showFormView();
+}
+
+function handleProjPhotos(e) {
+  var files = Array.from(e.target.files);
+  var promises = files.filter(function(f) { return f.type.startsWith('image/'); }).map(function(f) {
+    return baliReadFile(f, { maxWidth: 1600, maxHeight: 1060, quality: 0.8 }).then(function(src) { projFotos.push({ src: src, alt: f.name.replace(/\.[^.]+$/, '') }); });
+  });
+  Promise.all(promises).then(renderProjGallery).catch(function() {
+    admToast('Não foi possível ler uma das fotos.', 'err');
+  });
+  e.target.value = '';
+}
+
+var projPhotoDragIdx = null;
+function renderProjGallery() {
+  var gallery = document.getElementById('projGallery');
+  gallery.innerHTML = '';
+  projFotos.forEach(function(foto, i) {
+    var div = document.createElement('div');
+    div.className = 'adm-proj-photo';
+    div.draggable = true;
+    div.dataset.idx = i;
+
+    var grip = document.createElement('span');
+    grip.className = 'adm-proj-photo-grip'; grip.textContent = '⣿';
+
+    var img = document.createElement('img');
+    img.src = foto.src; img.alt = foto.alt;
+
+    var info = document.createElement('div');
+    info.className = 'adm-proj-photo-info';
+    var nameEl = document.createElement('div');
+    nameEl.className = 'adm-proj-photo-name'; nameEl.textContent = foto.alt;
+    info.appendChild(nameEl);
+    if (i === 0) {
+      var cov = document.createElement('div');
+      cov.className = 'adm-proj-photo-cover'; cov.textContent = '★ Capa / Hero';
+      info.appendChild(cov);
+    }
+
+    var del = document.createElement('button');
+    del.type = 'button';
+    del.className = 'adm-btn adm-btn-danger adm-btn-icon adm-btn-sm';
+    del.dataset.del = i; del.title = 'Remover';
+    del.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>';
+
+    div.appendChild(grip); div.appendChild(img); div.appendChild(info); div.appendChild(del);
+
+    attachPhotoDrag(div);
+    del.addEventListener('click', function() { projFotos.splice(+del.dataset.del, 1); renderProjGallery(); });
+    gallery.appendChild(div);
+  });
+}
+
+function attachPhotoDrag(el) {
+  el.addEventListener('dragstart', function(e) {
+    projPhotoDragIdx = +el.dataset.idx;
+    el.classList.add('drag-src');
+    if (e.dataTransfer) {
+      e.dataTransfer.setData('text/plain', '');
+      e.dataTransfer.effectAllowed = 'move';
+    }
+  });
+  el.addEventListener('dragend',   function() { el.classList.remove('drag-src'); });
+  el.addEventListener('dragover',  function(e) { e.preventDefault(); el.classList.add('drag-over-tgt'); });
+  el.addEventListener('dragleave', function() { el.classList.remove('drag-over-tgt'); });
+  el.addEventListener('drop', function(e) {
+    e.preventDefault(); el.classList.remove('drag-over-tgt');
+    var tgt = +el.dataset.idx;
+    if (projPhotoDragIdx === null || projPhotoDragIdx === tgt) return;
+    var moved = projFotos.splice(projPhotoDragIdx, 1)[0];
+    projFotos.splice(tgt, 0, moved);
+    projPhotoDragIdx = null;
+    renderProjGallery();
+  });
+}
+
+function renderProjetosList() {
+  var list = document.getElementById('projetosListEl');
+  if (!list) return;
+  projListData = BaliProjetos.getAll();
+  list.innerHTML = '';
+
+  var orderBtn = document.getElementById('saveProjetosOrderBtn');
+  if (orderBtn) orderBtn.style.display = 'none';
+
+  if (!projListData.length) {
+    list.innerHTML = '<div style="text-align:center;padding:3rem;color:rgba(247,246,228,.3);font-size:.82rem">Nenhum projeto cadastrado ainda.</div>';
+    return;
+  }
+
+  projListData.forEach(function(p, i) {
+    var row = document.createElement('div');
+    row.className = 'adm-proj-row';
+    row.draggable = true;
+    row.dataset.idx = i;
+
+    var grip = document.createElement('span');
+    grip.className = 'adm-proj-row-grip'; grip.title = 'Arrastar'; grip.textContent = '☰';
+
+    var thumb = (p.fotos && p.fotos[0]) ? p.fotos[0] : (p.capa || '');
+    var thumbEl;
+    if (thumb) {
+      thumbEl = document.createElement('img');
+      thumbEl.className = 'adm-proj-row-thumb'; thumbEl.src = thumb; thumbEl.alt = p.nome;
+    } else {
+      thumbEl = document.createElement('div');
+      thumbEl.className = 'adm-proj-row-thumb';
+    }
+
+    var info = document.createElement('div');
+    info.className = 'adm-proj-row-info';
+    var nameEl = document.createElement('div');
+    nameEl.className = 'adm-proj-row-name'; nameEl.textContent = p.nome;
+    var metaEl = document.createElement('div');
+    metaEl.className = 'adm-proj-row-meta'; metaEl.textContent = (p.ano || '—') + ' · ' + (p.local || '—');
+    info.appendChild(nameEl); info.appendChild(metaEl);
+
+    var cat = document.createElement('span');
+    cat.className = 'adm-proj-row-cat'; cat.textContent = p.categoria || '—';
+
+    var actions = document.createElement('div');
+    actions.className = 'adm-proj-row-actions';
+
+    var editBtn = document.createElement('button');
+    editBtn.className = 'adm-btn adm-btn-ghost adm-btn-icon adm-btn-sm'; editBtn.title = 'Editar';
+    editBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
+    editBtn.dataset.id = p.id;
+
+    var delBtn = document.createElement('button');
+    delBtn.className = 'adm-btn adm-btn-danger adm-btn-icon adm-btn-sm'; delBtn.title = 'Excluir';
+    delBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>';
+    delBtn.dataset.id = p.id; delBtn.dataset.nome = p.nome;
+
+    actions.appendChild(editBtn); actions.appendChild(delBtn);
+    row.appendChild(grip); row.appendChild(thumbEl); row.appendChild(info);
+    row.appendChild(cat); row.appendChild(actions);
+
+    attachRowDrag(row);
+
+    editBtn.addEventListener('click', function() { openEditProject(editBtn.dataset.id); });
+    delBtn.addEventListener('click', function() {
+      var nome = delBtn.dataset.nome;
+      admConfirm('Excluir projeto', 'Excluir "' + nome + '" permanentemente?').then(function(ok) {
+        if (ok) { BaliProjetos.remove(delBtn.dataset.id); renderProjetosList(); updateDashboard(); admToast('Projeto excluído.'); }
+      });
+    });
+
+    list.appendChild(row);
+  });
+}
+
+function attachRowDrag(el) {
+  el.addEventListener('dragstart', function(e) {
+    projListDragIdx = +el.dataset.idx;
+    el.classList.add('drag-src');
+    if (e.dataTransfer) {
+      e.dataTransfer.setData('text/plain', '');
+      e.dataTransfer.effectAllowed = 'move';
+    }
+  });
+  el.addEventListener('dragend', function() {
+    el.classList.remove('drag-src');
+    document.querySelectorAll('.adm-proj-row').forEach(function(r) { r.classList.remove('drag-over-tgt'); });
+  });
+  el.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    document.querySelectorAll('.adm-proj-row').forEach(function(r) { r.classList.remove('drag-over-tgt'); });
+    el.classList.add('drag-over-tgt');
+  });
+  el.addEventListener('dragleave', function(e) {
+    if (!el.contains(e.relatedTarget)) el.classList.remove('drag-over-tgt');
+  });
+  el.addEventListener('drop', function(e) {
+    e.preventDefault(); el.classList.remove('drag-over-tgt');
+    var tgt = +el.dataset.idx;
+    if (projListDragIdx === null || projListDragIdx === tgt) return;
+    var moved = projListData.splice(projListDragIdx, 1)[0];
+    projListData.splice(tgt, 0, moved);
+    projListDragIdx = null;
+    if (BaliProjetos.setAll(projListData)) {
+      renderProjetosList();
+      updateDashboard();
+      admToast('✓ Ordem salva!');
+    } else {
+      admToast('Não foi possível salvar a ordem.', 'err');
+    }
+  });
+}
+
+function saveProject(e) {
+  e.preventDefault();
+  var nome = document.getElementById('fNome').value.trim();
+  if (!nome) { admToast('Informe o título.', 'err'); return; }
+  var categoria = document.getElementById('fCategoria').value;
+  if (!categoria) { admToast('Selecione a categoria.', 'err'); return; }
+
+  var oldId = document.getElementById('fId').value;
+  var id    = oldId || baliSlug(nome) || ('proj-' + Date.now());
+  var tags  = [];
+  document.querySelectorAll('.adm-tag-check:checked').forEach(function(c) { tags.push(c.value); });
+  var fotos = projFotos.map(function(f) { return f.src; });
+
+  var projeto = {
+    id: id, nome: nome, categoria: categoria, tags: tags,
+    capa: fotos[0] || '',
+    ano:       document.getElementById('fAno').value.trim(),
+    area:      document.getElementById('fArea').value.trim(),
+    local:     document.getElementById('fLocal').value.trim(),
+    descricao: document.getElementById('fDescricao').value.trim(),
+    fotos: fotos
+  };
+
+  if (!BaliProjetos.upsert(projeto)) {
+    admToast('Não foi possível salvar. Use fotos menores ou remova algumas imagens.', 'err');
+    return;
+  }
+  updateDashboard();
+  admToast('✓ Projeto salvo!');
+  showListView();
+  renderProjetosList();
+}
+</script>
+
+</body>
+</html>

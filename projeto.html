@@ -48,21 +48,24 @@
   <footer>
     <p class="f-copy">CNPJ 64.661.800/0001-36 · © 2026 Bali Arquitetura. Todos os direitos reservados.</p>
     <div class="f-links">
-      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html">Início</a>
+      <a href="sobre.html">Sobre</a>
       <a href="projetos.html">Projetos</a>
-      <a href="galeria.html">Galeria</a>
       <a href="servicos.html">Serviços</a>
       <a href="contato.html">Contato</a>
     </div>
   </footer>
 
   <script src="projetos-data.js"></script>
+  <script src="bali-data.js"></script>
   <script>
+    function renderProjetoPage() {
     try {
       /* ── Lê o parâmetro ?id= ─────────────────────────────── */
       const params = new URLSearchParams(window.location.search);
       const idParam = params.get('id');
-      const projeto = PROJETOS.find(p => p.id === idParam);
+      const projeto = BaliProjetos.getById(idParam);
+      const allProjetos = BaliProjetos.getAll();
       const main = document.getElementById('projetoMain');
       const cur = document.getElementById('cur');
 
@@ -77,9 +80,9 @@
           </div>`;
       } else {
         /* Encontra o próximo projeto */
-        const currentIndex = PROJETOS.findIndex(p => p.id === projeto.id);
-        const nextIndex = (currentIndex + 1) % PROJETOS.length;
-        const nextProjeto = PROJETOS[nextIndex];
+        const currentIndex = allProjetos.findIndex(p => p.id === projeto.id);
+        const nextIndex = (currentIndex + 1) % allProjetos.length;
+        const nextProjeto = allProjetos[nextIndex];
 
         /* Atualiza título e meta */
         document.title = `${projeto.nome} — Bali Arquitetura`;
@@ -244,6 +247,7 @@
         navOv.classList.remove('on');
         document.body.style.overflow = '';
       }
+      window.closeNav = closeNav;
       hbtn.addEventListener('click', () => {
         const open = hbtn.classList.toggle('on');
         hbtn.setAttribute('aria-expanded', String(open));
@@ -258,6 +262,8 @@
         <a href="projetos.html" style="margin-top: 2rem; display: inline-block; padding: 0.8rem 2rem; background: #673921; color: #f7f6e4; text-decoration: none; border-radius: 99px; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;">Voltar para projetos</a>
       </div>`;
     }
+    }
+    BaliData.ready.then(renderProjetoPage).catch(renderProjetoPage);
   </script>
 </body>
 

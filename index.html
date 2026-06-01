@@ -9,6 +9,8 @@
     content="Projetos de arquitetura, interiores e reformas por Bali Arquitetura. Atendimento para clientes residenciais e comerciais com formulário de briefing e contato via WhatsApp.">
   <link rel="stylesheet" href="bali.css">
   <link rel="icon" type="image/png" href="assets/icon.png">
+  <script src="projetos-data.js"></script>
+  <script src="bali-data.js"></script>
 </head>
 
 <body>
@@ -37,7 +39,7 @@
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-bg" id="heroBg" style="background-image:url('assets/img/sala.png')"></div>
       <div class="hero-shade"></div>
       <div class="hero-cont">
         <p class="eyebrow">Arquitetura & Afeto</p>
@@ -138,44 +140,9 @@
       </div>
 
       <div class="proj-slide-wrap" id="projSlideWrap" aria-label="Slideshow de projetos">
-
-        <div class="proj-slide active" aria-hidden="false">
-          <img src="assets/img/sala.png" alt="Sala de apartamento com mobiliário sob medida">
-        </div>
-
-        <div class="proj-slide" aria-hidden="true">
-          <img src="assets/img/ext.png" alt="Fachada residencial com paisagismo">
-        </div>
-
-        <div class="proj-slide" aria-hidden="true">
-          <img src="assets/img/cozinha.png" alt="Cozinha planejada com bancada clara">
-        </div>
-
-        <div class="proj-slide" aria-hidden="true">
-          <img src="assets/img/quarto.png" alt="Quarto acolhedor com iluminação indireta">
-        </div>
-
-        <div class="proj-slide" aria-hidden="true">
-          <img src="assets/img/sala2.png" alt="Sala com tons naturais e madeira">
-        </div>
-
-        <div class="proj-slide" aria-hidden="true">
-          <img src="assets/img/hero.png" alt="Sala integrada com iluminação natural">
-        </div>
-
-        <!-- Indicadores -->
-        <div class="proj-dots" role="tablist" aria-label="Navegar entre projetos">
-          <button class="proj-dot active" data-idx="0" role="tab" aria-selected="true" aria-label="Projeto 1"></button>
-          <button class="proj-dot" data-idx="1" role="tab" aria-selected="false" aria-label="Projeto 2"></button>
-          <button class="proj-dot" data-idx="2" role="tab" aria-selected="false" aria-label="Projeto 3"></button>
-          <button class="proj-dot" data-idx="3" role="tab" aria-selected="false" aria-label="Projeto 4"></button>
-          <button class="proj-dot" data-idx="4" role="tab" aria-selected="false" aria-label="Projeto 5"></button>
-          <button class="proj-dot" data-idx="5" role="tab" aria-selected="false" aria-label="Projeto 6"></button>
-        </div>
-
-        <!-- Link -->
+        <!-- slides gerados pelo JS a partir do admin -->
+        <div class="proj-dots" role="tablist" aria-label="Navegar entre projetos" id="projDotsEl"></div>
         <a href="projetos.html" class="proj-slide-cta">ver todos os projetos</a>
-
       </div>
     </section>
 
@@ -214,9 +181,9 @@
   <footer>
     <p class="f-copy">CNPJ 64.661.800/0001-36 · © 2026 Bali Arquitetura. Todos os direitos reservados.</p>
     <div class="f-links">
-      <a href="#sobre">Sobre</a>
+      <a href="index.html">Início</a>
+      <a href="sobre.html">Sobre</a>
       <a href="projetos.html">Projetos</a>
-      <a href="galeria.html">Galeria</a>
       <a href="servicos.html">Serviços</a>
       <a href="contato.html">Contato</a>
     </div>
@@ -264,8 +231,18 @@
       document.body.style.overflow = open ? 'hidden' : '';
     });
 
+    /* ── Hero dinâmico (admin) ───────────────────────────── */
     const heroBg = document.getElementById('heroBg');
-    setTimeout(() => heroBg.classList.add('rdy'), 100);
+    (function() {
+      function applyHero() {
+        const customHero = BaliHero.get();
+        if (customHero) {
+          heroBg.style.backgroundImage = `url('${customHero}')`;
+        }
+        setTimeout(() => heroBg.classList.add('rdy'), 100);
+      }
+      BaliData.ready.then(applyHero).catch(applyHero);
+    })();
 
     const brandBg = document.getElementById('brandBg');
 
@@ -302,36 +279,65 @@
       });
     }, { threshold: .1 });
     imgs.forEach(img => imgObs.observe(img));
-    /* ── Slideshow portfólio ──────────────────────────────── */
+    /* ── Slideshow portfólio (dinâmico via admin) ────────── */
     (function() {
-      const slides = document.querySelectorAll('.proj-slide');
-      const dots   = document.querySelectorAll('.proj-dot');
-      const curr   = document.getElementById('projCurr');
+      function initPortfolioSlides() {
+      /* Imagens padrão como fallback */
+      const defaultImgs = [
+        { src: 'assets/img/sala.png',    alt: 'Sala de apartamento com mobiliário sob medida' },
+        { src: 'assets/img/ext.png',     alt: 'Fachada residencial com paisagismo' },
+        { src: 'assets/img/cozinha.png', alt: 'Cozinha planejada com bancada clara' },
+        { src: 'assets/img/quarto.png',  alt: 'Quarto acolhedor com iluminação indireta' },
+        { src: 'assets/img/sala2.png',   alt: 'Sala com tons naturais e madeira' },
+        { src: 'assets/img/hero.png',    alt: 'Sala integrada com iluminação natural' },
+      ];
+
+      const adminImgs = BaliPortfolio.get();
+      const imgList   = adminImgs || defaultImgs;
+
+      const wrap  = document.getElementById('projSlideWrap');
+      const dotsEl = document.getElementById('projDotsEl');
+      wrap.querySelectorAll('.proj-slide').forEach(slide => slide.remove());
+      dotsEl.innerHTML = '';
+
+      /* Cria slides */
+      imgList.forEach((img, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'proj-slide' + (i === 0 ? ' active' : '');
+        slide.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
+        slide.innerHTML = `<img src="${img.src}" alt="${img.alt || ''}" loading="${i === 0 ? 'eager' : 'lazy'}">`;
+        wrap.insertBefore(slide, dotsEl);
+
+        /* Dot */
+        const dot = document.createElement('button');
+        dot.className = 'proj-dot' + (i === 0 ? ' active' : '');
+        dot.dataset.idx = i;
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+        dot.setAttribute('aria-label', `Projeto ${i + 1}`);
+        dotsEl.appendChild(dot);
+      });
+
+      const slides = wrap.querySelectorAll('.proj-slide');
+      const dots   = dotsEl.querySelectorAll('.proj-dot');
       if (!slides.length) return;
 
       let idx = 0, timer;
 
       function goTo(n) {
-        slides[idx].classList.remove('active');
-        slides[idx].setAttribute('aria-hidden', 'true');
-        dots[idx].classList.remove('active');
-        dots[idx].setAttribute('aria-selected', 'false');
+        slides[idx].classList.remove('active'); slides[idx].setAttribute('aria-hidden', 'true');
+        dots[idx].classList.remove('active');   dots[idx].setAttribute('aria-selected', 'false');
         idx = (n + slides.length) % slides.length;
-        slides[idx].classList.add('active');
-        slides[idx].setAttribute('aria-hidden', 'false');
-        dots[idx].classList.add('active');
-        dots[idx].setAttribute('aria-selected', 'true');
-        if (curr) curr.textContent = String(idx + 1).padStart(2, '0');
+        slides[idx].classList.add('active');    slides[idx].setAttribute('aria-hidden', 'false');
+        dots[idx].classList.add('active');      dots[idx].setAttribute('aria-selected', 'true');
       }
-
       function start() { timer = setInterval(() => goTo(idx + 1), 4000); }
       function stop()  { clearInterval(timer); }
-
       start();
+      dots.forEach(d => d.addEventListener('click', () => { stop(); goTo(+d.dataset.idx); start(); }));
+      }
 
-      dots.forEach(d => d.addEventListener('click', () => {
-        stop(); goTo(+d.dataset.idx); start();
-      }));
+      BaliData.ready.then(initPortfolioSlides).catch(initPortfolioSlides);
     })();
 
   </script>
