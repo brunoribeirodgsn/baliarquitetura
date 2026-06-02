@@ -25,7 +25,7 @@ function _remove(key) {
   try { localStorage.removeItem(key); } catch {}
 }
 
-const BALI_REMOTE_ENDPOINT = '/api/bali-data';
+const BALI_REMOTE_ENDPOINT = '/api/bali-data.php';
 let _baliRemoteData = null;
 
 function _remotePayloadFromCache() {

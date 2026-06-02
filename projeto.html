@@ -1,37 +1,37 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projeto — Bali Arquitetura</title>
+  <title>Projeto â€” Bali Arquitetura</title>
   <meta name="description" content="Detalhes do projeto de arquitetura e interiores pela Bali Arquitetura.">
   <link rel="stylesheet" href="bali.css">
-  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="icon" type="image/png" href="assets/icon.png">
 </head>
 
 <body>
 
   <div class="cur" id="cur"></div>
 
-  <a class="quick-cta" href="https://wa.me/5524992237645" target="_blank">solicite seu orçamento</a>
-  <a class="quick-cta quick-cta-left" href="projetos.html" id="btnVoltar">← projetos</a>
+  <a class="quick-cta" href="https://wa.me/5524992237645" target="_blank">solicite seu orÃ§amento</a>
+  <a class="quick-cta quick-cta-left" href="projetos.html" id="btnVoltar">â† projetos</a>
 
   <button class="hbtn" id="hbtn" aria-label="Abrir menu" aria-expanded="false">
     <b></b><b></b><b></b>
   </button>
 
-  <nav class="nav-ov" id="navOv" aria-label="Navegação principal">
+  <nav class="nav-ov" id="navOv" aria-label="NavegaÃ§Ã£o principal">
     <ul>
       <li><a href="index.html#sobre" class="lk" onclick="closeNav()">sobre</a></li>
       <li><a href="projetos.html" class="lk" onclick="closeNav()">projetos</a></li>
       <li><a href="galeria.html" class="lk" onclick="closeNav()">galeria</a></li>
-      <li><a href="servicos.html" class="lk">serviços</a></li>
+      <li><a href="servicos.html" class="lk">serviÃ§os</a></li>
       <li><a href="contato.html" class="lk">contato</a></li>
     </ul>
     <div class="nav-ov-foot">
       <p>arquitetura &amp; interiores</p>
-      <p>rio de janeiro · reformas e projetos</p>
+      <p>rio de janeiro Â· reformas e projetos</p>
     </div>
   </nav>
 
@@ -40,18 +40,18 @@
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lightbox-close" type="button" aria-label="Fechar imagem">fechar</button>
     <button class="lightbox-prev" type="button" aria-label="Foto anterior">&#8592;</button>
-    <button class="lightbox-next" type="button" aria-label="Próxima foto">&#8594;</button>
+    <button class="lightbox-next" type="button" aria-label="PrÃ³xima foto">&#8594;</button>
     <span class="lightbox-counter" id="lbCounter"></span>
     <img src="" alt="">
   </div>
 
   <footer>
-    <p class="f-copy">CNPJ 64.661.800/0001-36 · © 2026 Bali Arquitetura. Todos os direitos reservados.</p>
+    <p class="f-copy">CNPJ 64.661.800/0001-36 Â· Â© 2026 Bali Arquitetura. Todos os direitos reservados.</p>
     <div class="f-links">
-      <a href="index.html">Início</a>
+      <a href="index.html">InÃ­cio</a>
       <a href="sobre.html">Sobre</a>
       <a href="projetos.html">Projetos</a>
-      <a href="servicos.html">Serviços</a>
+      <a href="servicos.html">ServiÃ§os</a>
       <a href="contato.html">Contato</a>
     </div>
   </footer>
@@ -61,7 +61,7 @@
   <script>
     function renderProjetoPage() {
     try {
-      /* ── Lê o parâmetro ?id= ─────────────────────────────── */
+      /* â”€â”€ LÃª o parÃ¢metro ?id= â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const params = new URLSearchParams(window.location.search);
       const idParam = params.get('id');
       const projeto = BaliProjetos.getById(idParam);
@@ -70,29 +70,29 @@
       const cur = document.getElementById('cur');
 
       if (!projeto) {
-        /* 404 amigável */
+        /* 404 amigÃ¡vel */
         main.innerHTML = `
           <div class="proj-not-found">
-            <span class="lbl">Projeto não encontrado</span>
-            <h1 class="h2" style="font-size:clamp(2rem,5vw,4rem)">Ops…</h1>
-            <p style="color:rgba(var(--br-rgb),.6);font-size:.95rem">Este projeto não existe ou foi removido.</p>
+            <span class="lbl">Projeto nÃ£o encontrado</span>
+            <h1 class="h2" style="font-size:clamp(2rem,5vw,4rem)">Opsâ€¦</h1>
+            <p style="color:rgba(var(--br-rgb),.6);font-size:.95rem">Este projeto nÃ£o existe ou foi removido.</p>
             <a href="projetos.html" class="ct-wa-btn" style="margin-top:1rem">Ver todos os projetos</a>
           </div>`;
       } else {
-        /* Encontra o próximo projeto */
+        /* Encontra o prÃ³ximo projeto */
         const currentIndex = allProjetos.findIndex(p => p.id === projeto.id);
         const nextIndex = (currentIndex + 1) % allProjetos.length;
         const nextProjeto = allProjetos[nextIndex];
 
-        /* Atualiza título e meta */
-        document.title = `${projeto.nome} — Bali Arquitetura`;
+        /* Atualiza tÃ­tulo e meta */
+        document.title = `${projeto.nome} â€” Bali Arquitetura`;
         const metaDesc = document.querySelector('meta[name="description"]');
         if (metaDesc) {
-          metaDesc.content = `${projeto.nome}: ${projeto.descricao.slice(0, 140)}…`;
+          metaDesc.content = `${projeto.nome}: ${projeto.descricao.slice(0, 140)}â€¦`;
         }
 
-        /* WhatsApp msg pré-preenchida */
-        const waMsg = encodeURIComponent(`Olá, Diego! Vi o projeto "${projeto.nome}" no site e gostaria de saber mais.`);
+        /* WhatsApp msg prÃ©-preenchida */
+        const waMsg = encodeURIComponent(`OlÃ¡, Diego! Vi o projeto "${projeto.nome}" no site e gostaria de saber mais.`);
         const waUrl = `https://wa.me/5524992237645?text=${waMsg}`;
 
         /* Tags HTML */
@@ -124,7 +124,7 @@
                   <span class="detail-meta-val">${projeto.ano}</span>
                 </div>
                 <div class="detail-meta-row">
-                  <span class="detail-meta-label">Área</span>
+                  <span class="detail-meta-label">Ãrea</span>
                   <span class="detail-meta-val">${projeto.area}</span>
                 </div>
                 <div class="detail-meta-row">
@@ -147,11 +147,11 @@
           </div>
 
           <div class="detail-next-section">
-            <span class="lbl">Próximo Projeto</span>
+            <span class="lbl">PrÃ³ximo Projeto</span>
             <h2><a href="projeto.html?id=${nextProjeto.id}">${nextProjeto.nome} &rarr;</a></h2>
           </div>`;
 
-        /* Lightbox com navegação */
+        /* Lightbox com navegaÃ§Ã£o */
         const lightbox    = document.getElementById('lightbox');
         const lightboxImg = lightbox.querySelector('img');
         const lbCounter   = document.getElementById('lbCounter');
@@ -221,7 +221,7 @@
         }
       }
 
-      /* ── Cursor ──────────────────────────────────────────── */
+      /* â”€â”€ Cursor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       let mx = 0, my = 0, cx = 0, cy = 0;
       const canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
       if (canHover && cur) {
@@ -238,7 +238,7 @@
         });
       } else { cur.style.display = 'none'; }
 
-      /* ── Menu ────────────────────────────────────────────── */
+      /* â”€â”€ Menu â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const hbtn = document.getElementById('hbtn');
       const navOv = document.getElementById('navOv');
       function closeNav() {

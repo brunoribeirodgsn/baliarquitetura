@@ -1,45 +1,45 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projetos — Bali Arquitetura</title>
+  <title>Projetos â€” Bali Arquitetura</title>
   <meta name="description"
-    content="Conheça os projetos de arquitetura, interiores e reformas realizados pela Bali Arquitetura no Rio de Janeiro.">
+    content="ConheÃ§a os projetos de arquitetura, interiores e reformas realizados pela Bali Arquitetura no Rio de Janeiro.">
   <link rel="stylesheet" href="bali.css">
-  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="icon" type="image/png" href="assets/icon.png">
 </head>
 
 <body>
 
   <div class="cur" id="cur"></div>
 
-  <a class="quick-cta" href="https://wa.me/5524992237645" target="_blank">solicite seu orçamento</a>
-  <a class="quick-cta quick-cta-left" href="index.html" id="btnInicio">← início</a>
+  <a class="quick-cta" href="https://wa.me/5524992237645" target="_blank">solicite seu orÃ§amento</a>
+  <a class="quick-cta quick-cta-left" href="index.html" id="btnInicio">â† inÃ­cio</a>
 
   <button class="hbtn" id="hbtn" aria-label="Abrir menu" aria-expanded="false">
     <b></b><b></b><b></b>
   </button>
 
-  <nav class="nav-ov" id="navOv" aria-label="Navegação principal">
+  <nav class="nav-ov" id="navOv" aria-label="NavegaÃ§Ã£o principal">
     <ul>
       <li><a href="index.html#sobre" class="lk" onclick="closeNav()">sobre</a></li>
       <li><a href="projetos.html" class="lk" onclick="closeNav()">projetos</a></li>
       <li><a href="galeria.html" class="lk" onclick="closeNav()">galeria</a></li>
-      <li><a href="servicos.html" class="lk">serviços</a></li>
+      <li><a href="servicos.html" class="lk">serviÃ§os</a></li>
       <li><a href="contato.html" class="lk">contato</a></li>
     </ul>
     <div class="nav-ov-foot">
       <p>arquitetura &amp; interiores</p>
-      <p>rio de janeiro · reformas e projetos</p>
+      <p>rio de janeiro Â· reformas e projetos</p>
     </div>
   </nav>
 
   <main>
 
     <header class="proj-page-hero">
-      <span class="lbl">Portfólio</span>
+      <span class="lbl">PortfÃ³lio</span>
       <h1 class="proj-page-logo" aria-label="Bali Arquitetura">
         <img src="assets/logotipo/PNG/Ativo 8@288x-8.png" alt="Bali">
       </h1>
@@ -59,12 +59,12 @@
   </main>
 
   <footer>
-    <p class="f-copy">CNPJ 64.661.800/0001-36 · © 2026 Bali Arquitetura. Todos os direitos reservados.</p>
+    <p class="f-copy">CNPJ 64.661.800/0001-36 Â· Â© 2026 Bali Arquitetura. Todos os direitos reservados.</p>
     <div class="f-links">
-      <a href="index.html">Início</a>
+      <a href="index.html">InÃ­cio</a>
       <a href="sobre.html">Sobre</a>
       <a href="projetos.html">Projetos</a>
-      <a href="servicos.html">Serviços</a>
+      <a href="servicos.html">ServiÃ§os</a>
       <a href="contato.html">Contato</a>
     </div>
   </footer>
@@ -72,7 +72,7 @@
   <script src="projetos-data.js"></script>
   <script src="bali-data.js"></script>
   <script>
-    /* ── Renderiza cards ─────────────────────────────────── */
+    /* â”€â”€ Renderiza cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     const grid = document.getElementById('projGrid');
 
     function renderGrid(filtro) {
@@ -84,18 +84,18 @@
         a.href = `projeto.html?id=${p.id}`;
         a.className = 'proj-card';
         a.setAttribute('role', 'listitem');
-        a.setAttribute('aria-label', `${p.nome} — ${p.categoria}`);
+        a.setAttribute('aria-label', `${p.nome} â€” ${p.categoria}`);
         if (!visible) a.hidden = true;
 
         a.innerHTML = `
           <img src="${p.capa}" alt="Capa do projeto ${p.nome}" loading="lazy">
           <div class="proj-card-always">
             <span class="proj-card-name">${p.nome}</span>
-            <span class="proj-card-cat">${p.categoria} · ${p.ano}</span>
+            <span class="proj-card-cat">${p.categoria} Â· ${p.ano}</span>
           </div>
           <div class="proj-card-ov" aria-hidden="true">
             <span class="proj-card-name">${p.nome}</span>
-            <span class="proj-card-cat">${p.categoria} · ${p.local}</span>
+            <span class="proj-card-cat">${p.categoria} Â· ${p.local}</span>
           </div>`;
         grid.appendChild(a);
       });
@@ -103,7 +103,7 @@
 
     BaliData.ready.then(() => renderGrid('todos')).catch(() => renderGrid('todos'));
 
-    /* ── Filtros ─────────────────────────────────────────── */
+    /* â”€â”€ Filtros â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     document.getElementById('filterBar').addEventListener('click', e => {
       const btn = e.target.closest('.filter-btn');
       if (!btn) return;
@@ -112,7 +112,7 @@
       renderGrid(btn.dataset.filter);
     });
 
-    /* ── Cursor ──────────────────────────────────────────── */
+    /* â”€â”€ Cursor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     const cur = document.getElementById('cur');
     let mx = 0, my = 0, cx = 0, cy = 0;
     const canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
@@ -130,7 +130,7 @@
       });
     } else { cur.style.display = 'none'; }
 
-    /* ── Menu ────────────────────────────────────────────── */
+    /* â”€â”€ Menu â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
     const hbtn = document.getElementById('hbtn');
     const navOv = document.getElementById('navOv');
     function closeNav() {
